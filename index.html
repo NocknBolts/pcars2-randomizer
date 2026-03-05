@@ -1,0 +1,441 @@
+# ------------------------------------------------------------
+# Project CARS 2 Random Setup Generator
+# Save this file as UTF-8 with BOM
+# ------------------------------------------------------------
+
+# 1. Vehicle list (brand + model only, unchanged)
+$vehicleList = @(
+    "Acura NSX"
+    "Acura NSX GT3"
+    "Watson Roadster"
+    "Aston Martin DB11"
+    "Aston Martin DBR1-300"
+    "Aston Martin V8 Vantage GTE"
+    "Aston Martin V8 Vantage GT4"
+    "Aston Martin V12 Vantage GT3"
+    "Aston Martin Vantage GT12"
+    "Aston Martin Vulcan"
+    "Audi 90 quattro IMSA-GTO"
+    "Audi A1 quattro"
+    "Audi R8 (LMP900)"
+    "Audi R8 e-tron quattro (LMP1)"
+    "Audi R8 LMS"
+    "Audi R8 LMS Endurance"
+    "Audi R8 V10 plus"
+    "Audi R18 e-tron quattro"
+    "Audi V8 quattro DTM"
+    "Audi R18 (Le Mans)"
+    "Audi R18 (Fuji)"
+    "Audi Sport quattro S1"
+    "Audi S1 EKS RX quattro"
+    "BAC Mono"
+    "Bentley Continental GT3"
+    "Bentley Continental GT3 Endurance"
+    "Bentley Speed 8"
+    "BMW 1-Series M Coupe"
+    "BMW 1-Series M Coupe StanceWorks Edition"
+    "BMW 2002 Turbo"
+    "BMW 2002 StanceWorks Edition"
+    "BMW 320 TC"
+    "BMW 320 Turbo Group 5"
+    "BMW M1 Procar"
+    "BMW M3 E30 Group A"
+    "BMW M3 GT4"
+    "BMW M6 GT3"
+    "BMW M6 GTLM"
+    "BMW V12 LMR"
+    "BMW Z4 GT3"
+    "Cadillac ATS-V.R GT3"
+    "Caterham SP/300.R"
+    "Chevrolet Camaro Z/28 Trans Am"
+    "Chevrolet Corvette C7 Z06"
+    "Chevrolet Corvette C7.R"
+    "Citroën DS3 RX Supercar"
+    "Dallara DW12 Chevrolet (Road Course)"
+    "Dallara DW12 Chevrolet (Speedway)"
+    "Dallara DW12 Honda (Road Course)"
+    "Dallara DW12 Honda (Speedway)"
+    "Ferrari 250 GT Berlinetta"
+    "Ferrari 250 Testa Rossa"
+    "Ferrari 512 S"
+    "Ferrari 512 M"
+    "Ferrari 512 BB LM"
+    "Ferrari 288 GTO"
+    "Ferrari F40"
+    "Ferrari F355 Challenge"
+    "Ferrari 458 Speciale Aperta"
+    "Ferrari FXX-K"
+    "Ferrari F12tdf"
+    "Ferrari 365 GTB4 Competizione"
+    "Ferrari 488 GTE"
+    "Ferrari 488 GT3"
+    "Ferrari F40 LM"
+    "Ferrari F50 GT"
+    "Ferrari LaFerrari"
+    "Ford Capri Zakspeed Group 5"
+    "Ford Escort Mk1 RS1600"
+    "Ford Escort Mk1 RS1600 SMS-R"
+    "Ford Escort Mk1 RS1600 RX"
+    "Ford F-150 RTR Ultimate Funhaver"
+    "Ford Falcon FG V8 Supercar"
+    "Ford Focus RS RX"
+    "Ford Fusion Stockcar"
+    "Ford GT"
+    "Ford GT LM GTE"
+    "Ford GT40 MkIV"
+    "Ford Mustang 2+2 Fastback"
+    "Ford Mustang Boss 302R"
+    "Ford Mustang Cobra TransAm"
+    "Ford Mustang GT"
+    "Ford Mustang RTR GT4"
+    "Ford Sierra RS500 Cosworth Group A"
+    "Ford RS200 Evolution"
+    "Ford Mustang RTR Spec-5D"
+    "Ford Mustang '66 RTR"
+    "Ginetta G40 GT5"
+    "Ginetta G40 Junior"
+    "Ginetta G55 GT3"
+    "Ginetta G55 GT4"
+    "Ginetta G57-P2"
+    "Ginetta LMP3"
+    "Honda’s 2&4 Concept Car"
+    "Honda Civic GRC"
+    "Honda Civic Type R"
+    "Jaguar E-Type V12"
+    "Jaguar F-Type SVR"
+    "Jaguar XJ220 S TWR"
+    "Jaguar XJR-9"
+    "Jaguar XJR-9 LM"
+    "KTM X-Bow GT4"
+    "KTM X-Bow R"
+    "Lamborghini Huracan LP 620-2 Super Trofeo"
+    "Lamborghini Huracan GT3"
+    "Lamborghini Veneno"
+    "Ligier JS P2 Honda"
+    "Ligier JS P2 Judd"
+    "Ligier JS P2 Nissan"
+    "Lotus Type 25 Climax"
+    "Lotus Type 38 Ford"
+    "Lotus Type 40 Ford"
+    "Lotus Type 49 Cosworth"
+    "Lotus Type 49C Cosworth"
+    "Lotus Type 51"
+    "Lotus Type 56"
+    "Lotus Type 72D Cosworth"
+    "Lotus Type 78 Cosworth"
+    "Lotus Type 98T Renault Turbo"
+    "Mazda MX-5 Radbul"
+    "McLaren 570S"
+    "McLaren 650S GT3"
+    "McLaren 720S"
+    "McLaren F1"
+    "McLaren F1 GTR Long Tail"
+    "McLaren P1"
+    "McLaren P1 GTR"
+    "Mercedes-AMG A45 SMS-R RX"
+    "Mercedes-AMG A45 SMS-R Touring"
+    "Mercedes-AMG C63 Coupe S"
+    "Mercedes-AMG GT3"
+    "Mercedes-AMG GT R"
+    "Mercedes-Benz 190E 2.5-16 Evolution II DTM"
+    "Mercedes-Benz 300 SEL 6.8 AMG"
+    "Mercedes-Benz 300 SL"
+    "Mercedes-Benz CLK-LM"
+    "Mercedes-Benz SLS AMG GT3"
+    "Sauber C9 Mercedes-Benz Group C"
+    "MINI Countryman RX"
+    "Mitsubishi Lancer Evolution VI TME"
+    "Mitsubishi Lancer Evolution VI SVA"
+    "Mitsubishi Lancer Evolution IX FQ-360"
+    "Mitsubishi Lancer Evolution X FQ-400"
+    "Nissan 280ZX Turbo IMSA GTX"
+    "Nissan 300ZX LM"
+    "Nissan 300ZX IMSA GTS"
+    "Nissan Fairlady 240ZG GTS-II"
+    "Nissan GT-R R35 GT3"
+    "Nissan GT-R R35 Nismo"
+    "Nissan GTP ZX-Turbo"
+    "Nissan R390 GT1"
+    "Nissan Skyline GT-R BNR32 Group A"
+    "Nissan Skyline GT-R R34 SMS-R"
+    "Olsbergs MSE RX Supercar Lite"
+    "Opel Astra TCR"
+    "Oreca 03 Nissan"
+    "Pagani Huayra BC"
+    "Pagani Zonda Cinque Roadster"
+    "Pagani Zonda Revolucion"
+    "Panoz Esperante GTR-1"
+    "Porsche 917 LH"
+    "Porsche 908/03 Spyder"
+    "Porsche 917K"
+    "Porsche 917/10"
+    "Porsche 911 Carrera RSR 2.8"
+    "Porsche 935/78"
+    "Porsche 935/78-81"
+    "Porsche 924 Carrera GTP"
+    "Porsche 961"
+    "Porsche 959 S"
+    "Porsche 911 GT1-98"
+    "Porsche Carrera GT"
+    "Porsche 918 Spyder Weissach"
+    "Porsche 911 GT3 R"
+    "Porsche 911 GT3 R Endurance"
+    "Porsche 911 GT3 RS"
+    "Porsche 919 Hybrid"
+    "Porsche 911 RSR"
+    "Radical SR3-RS"
+    "Radical SR8-RX"
+    "Radical RXC Turbo"
+    "Renault Alpine A442B"
+    "Renault Megane Trophy V6"
+    "Renault Clio Cup"
+    "Renault Megane R.S. 275 Trophy-R"
+    "Renault Megane R.S. SMS-R RX"
+    "Renault Megane R.S. SMS-R Touring"
+    "Renault Sport R.S. 01"
+    "Renault Sport R.S. 01 GT3"
+    "Renault R5 Maxi Turbo"
+    "Toyota 86"
+    "Toyota GT-86"
+    "Toyota GT-86 Rocket Bunny GT4"
+    "Toyota GT-86 Rocket Bunny Street"
+    "Toyota TS020 GT-One"
+    "Toyota TS040 Hybrid"
+    "Toyota TS050 Hybrid"
+    "Volkswagen Polo RX Supercar"
+)
+
+# 2. Track list with layouts (unchanged)
+$trackLines = @"
+Autodromo Internacional do Algarve – Grand Prix Circuit
+Autodromo Nazionale Monza – Grand Prix Circuit
+Autodromo Nazionale Monna – Short Circuit
+Azure Coast – Eastbound Point to Point Stage 1
+Azure Coast – Eastbound Point to Point Stage 2
+Azure Coast – Eastbound Point to Point Stage 3
+Azure Coast – Westbound Point to Point
+Bannochbrae – Road Circuit
+Bathurst Mount Panorama – Grand Prix Circuit
+Brands Hatch – Grand Prix Circuit
+Brands Hatch – Indy Circuit
+Brands Hatch Rallycross – Classic Rallycross course
+Brno – Grand Prix Circuit
+Cadwell Park – Club Circuit
+Cadwell Park – Grand Prix Circuit
+Cadwell Park – Woodland Circuit
+California Highway – Northbound Point to Point
+California Highway – Southbound Point to Point
+California Highway – Stage 1 Point to Point
+California Highway – Stage 2 Point to Point
+California Highway – Stage 3 Point to Point
+Chesterfield Karting Circuit – Grand Prix Circuit
+Circuit de Barcelona-Catalunya – Club Circuit
+Circuit de Barcelona-Catalunya – Grand Prix Circuit
+Circuit de Barcelona-Catalunya – National Circuit
+Circuit de Barcelona-Catalunya Rallycross – Rallycross Circuit
+Circuit de Spa-Francorchamps – Grand Prix Circuit
+Circuit of the Americas – Grand Prix Circuit
+Daytona International Speedway – Rallycross Circuit
+Daytona International Speedway – Road Course Circuit
+Daytona International Speedway – Tri-Oval Circuit
+Dirtfish Rally School – Rallycross Circuit
+Donington – Grand Prix Circuit
+Donington – National Circuit
+Dubai Autodrome – Club Circuit
+Dubai Autodrome – Grand Prix Circuit
+Dubai Autodrome – International Circuit
+Dubai Autodrome – Karting Circuit
+Dubai Autodrome – National Circuit
+Fuji Speedway – Grand Prix Circuit
+Glencairn Karting Circuit – East Circuit
+Glencairn Karting Circuit – East Reverse Circuit
+Glencairn Karting Circuit – Grand Prix Circuit
+Glencairn Karting Circuit – Reverse Circuit
+Glencairn Karting Circuit – West Circuit
+Glencairn Karting Circuit – West Reverse Circuit
+Greenwood Karting Circuit – Grand Prix Circuit
+Hockenheimring – Classic Circuit
+Hockenheimring – Grand Prix Circuit
+Hockenheimring – National Circuit
+Hockenheimring Rallycross – Rallycross Circuit
+Hockenheimring – Short Circuit
+Imola – Grand Prix Circuit
+Indianapolis Motor Speedway – Road Course Circuit
+Indianapolis Motor Speedway – Speedway Oval Circuit
+Knockhill Racing Circuit – International Reverse Circuit
+Knockhill Racing Circuit – Rallycross Circuit
+Lankebanen – Hell Rallycross Circuit
+Le Mans – Bugatti Circuit
+Le Mans – Circuit de 24 Heures du Mans
+Loheac-Bretagne – Rallycross Circuit
+Long Beach – Grand Prix Circuit
+Lydden Hill – Grand Prix Circuit
+Lydden Hill – Rallycross Circuit
+Mazda Raceway Laguna Seca – Grand Prix Circuit
+Mercedes-Benz Ice Track – East Circuit
+Mercedes-Benz Ice Track – North Circuit
+Mercedes-Benz Ice Track – South Circuit
+Mercedes-Benz Ice Track – West Circuit
+Mojave – Boa Ascent Circuit
+Mojave – Cougar Ridge Circuit
+Mojave – Coyote Noose Circuit
+Mojave – Gila Crest Circuit
+Mojave – Sidewinder Circuit
+Mojave – Test Track
+Nürburgring – Grand Prix Circuit
+Nürburgring – Mullenbach Circuit
+Nürburgring – Nordschleife Circuit
+Nürburgring – Nordschleife 24 Hour Circuit
+Nürburgring – Nordschleife Stage 1 Point to Point
+Nürburgring – Nordschleife Stage 2 Point to Point
+Nürburgring – Nordschleife Stage 3 Point to Point
+Nürburgring – Sprint Circuit
+Nürburgring – Sprint Short Circuit
+Oschersleben Motorsport Arena – C Circuit
+Oschersleben Motorsport Arena – Grand Prix Circuit
+Oschersleben Motorsport Arena – National Circuit
+Oulton Park – Fosters Circuit
+Oulton Park – International Circuit
+Oulton Park – Island Circuit
+Red Bull Ring – Club Circuit
+Red Bull Ring – Grand Prix Circuit
+Red Bull Ring – National Circuit
+Road America – Grand Prix Circuit
+Rouen Les Essarts – Grand Prix Circuit
+Rouen Les Essarts – Short Circuit
+Ruapuna Park International Raceway – A Circuit
+Ruapuna Park International Raceway – B Circuit
+Ruapuna Park International Raceway – Club Circuit
+Ruapuna Park International Raceway – Grand Prix Circuit
+Ruapuna Park International Raceway – Outer Loop Circuit
+Sakitto – Grand Prix Circuit
+Sakitto – International Circuit
+Sakitto – National Circuit
+Sakitto – Sprint Circuit
+Sampala Circuit – Grand Prix Circuit
+Silverstone – Classic Circuit
+Silverstone – Grand Prix Circuit
+Silverstone – International Circuit
+Silverstone – National Circuit
+Silverstone – Stowe Circuit
+Snetterton – 100 Circuit
+Snetterton – 200 Circuit
+Snetterton – 300 Circuit
+Sonoma Raceway – Grand Prix Circuit
+Sonoma Raceway – National Circuit
+Sonoma Raceway – Short Circuit
+Sportsland SUGO – Grand Prix Circuit
+"@ -split "`r?`n" | Where-Object { $_ }
+
+# 3. Build Hashtables
+$vehicles = @{} 
+foreach ($v in $vehicleList) { $vehicles[$v] = @("Standard") }
+
+$tracks = @{} 
+foreach ($t in $trackLines) {
+    $norm  = $t -replace '[–—]','-'
+    $parts = $norm -split '\s*-\s*',2
+    $name  = $parts[0].Trim()
+    $lyt   = $parts[1].Trim()
+    if (-not $tracks.ContainsKey($name)) { $tracks[$name] = @() }
+    $tracks[$name] += $lyt
+}
+
+# 4. Random Setup Function
+function Show-RandomSetup {
+    Clear-Host
+
+    # 4.1 Vehicle + Track
+    $veh    = $vehicles.Keys  | Get-Random
+    $trk    = $tracks.Keys    | Get-Random
+    $layout = $tracks[$trk]   | Get-Random
+
+    # 4.2 Date by season weights: Spring=2, Summer=6, Autumn=2, Winter=1
+    $year = Get-Random -InputObject (2020..2025)
+    $monthWeights = @{1=1;2=1;3=2;4=2;5=2;6=6;7=6;8=6;9=2;10=2;11=2;12=1}
+    $monthPool = foreach ($m in 1..12) { for ($i=0; $i -lt $monthWeights[$m]; $i++) { $m } }
+    $month     = $monthPool | Get-Random
+    $maxDay    = [DateTime]::DaysInMonth($year, $month)
+    $day       = Get-Random -Minimum 1 -Maximum ($maxDay + 1)
+    $date      = Get-Date -Year $year -Month $month -Day $day
+
+    # 4.3 Hour by time-of-day weights:
+    # Morning  7–10  w=1
+    # Midday  11–13  w=3
+    # Afternoon14–18 w=5
+    # Evening 19–21  w=2
+    # Night   22–6   w=1
+    $hourPool = @()
+    foreach ($h in 0..23) {
+        if    ($h -ge 7  -and $h -le 10) { $w = 1 }
+        elseif($h -ge 11 -and $h -le 13) { $w = 3 }
+        elseif($h -ge 14 -and $h -le 18) { $w = 5 }
+        elseif($h -ge 19 -and $h -le 21) { $w = 2 }
+        else                              { $w = 1 }
+        1..$w | ForEach-Object { $hourPool += $h }
+    }
+    $hour = $hourPool | Get-Random
+
+    # 4.4 Build DateTime
+    $dt     = Get-Date -Year $date.Year -Month $date.Month -Day $date.Day -Hour $hour -Minute 0
+    $time24 = $dt.ToString('HH:mm')
+    $time12 = $dt.ToString('h:mm tt')
+
+    # 4.5 Weather by custom weights
+    # Group weights: Clear/clouds=10, Rain/snow mix=4, Fog variants=2
+    $groupWeights = @{ "clear" = 10; "rain" = 4; "fog" = 2 }
+    $groupPool = foreach ($g in $groupWeights.Keys) {
+        for ($i = 0; $i -lt $groupWeights[$g]; $i++) { $g }
+    }
+    $selGroup = $groupPool | Get-Random
+
+    switch ($selGroup) {
+      "clear" {
+        $options = @("Clear","Light cloud","Medium cloud","Heavy cloud","Overcast")
+        break
+      }
+      "rain" {
+        # internal rain/snow weights
+        $rw = @{
+          "Light rain"   = 3
+          "Rain"         = 3
+          "Storm"        = 1
+          "Thunderstorm" = 1
+          "Snow"         = 3
+          "Heavy snow"   = 1
+          "Blizzard"     = 1
+        }
+        $rainPool = foreach ($w in $rw.Keys) {
+          for ($i = 0; $i -lt $rw[$w]; $i++) { $w }
+        }
+        $options = $rainPool
+        break
+      }
+      "fog" {
+        $options = @(
+          "Fog",
+          "Fog with rain",
+          "Heavy fog",
+          "Heavy fog with rain",
+          "Hazy"
+        )
+        break
+      }
+    }
+
+    $weather = $options | Get-Random
+
+    # 5. Output
+    Write-Host "🏎️ Vehicle:     $veh"                                  -ForegroundColor Cyan
+    Write-Host "🛣️ Track:       $trk – $layout"                        -ForegroundColor Yellow
+    Write-Host "☀️ Weather:     $weather"                              -ForegroundColor Green
+    Write-Host "📅 Date:        $($date.ToString('yyyy-MM-dd'))"       -ForegroundColor Magenta
+    Write-Host "⏰ Time (24h):   $time24"                              -ForegroundColor Magenta
+    Write-Host "`nPress any key for a new setup..."                   -ForegroundColor White
+
+    [void][System.Console]::ReadKey($true)
+    Show-RandomSetup
+}
+
+# 5. Start
+Show-RandomSetup
