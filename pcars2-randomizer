@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bumpside Simsport Race Control</title>
+
+<style>
+body {
+    background-color: #0b0f14;
+    color: #e6edf3;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    text-align: center;
+    padding: 30px;
+}
+
+h1 {
+    color: #00d4ff;
+}
+
+.card {
+    background: #111826;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+}
+
+button {
+    background-color: #00d4ff;
+    border: none;
+    color: black;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+</style>
+</head>
+<body>
+
+<h1>🏁 Bumpside Simsport</h1>
+<h3>Project CARS 2 Random Setup</h3>
+
+<div class="card">
+<p id="vehicle"></p>
+<p id="track"></p>
+<p id="weather"></p>
+<p id="date"></p>
+<p id="time"></p>
+</div>
+
+<button onclick="generate()">Generate Setup</button>
+
+<script>
+
+/* ============================= */
+/* VEHICLE LIST */
+/* ============================= */
+
+const vehicles = [
+"Acura NSX GT3",
+"Audi R18 e-tron quattro",
+"BMW M6 GT3",
+"Ferrari 488 GT3",
+"Ford GT LM GTE",
+"Porsche 919 Hybrid",
+"Toyota TS050 Hybrid",
+"McLaren 720S",
+"Mercedes-AMG GT3",
+"Nissan GT-R R35 GT3"
+];
+
+/* ============================= */
+/* TRACK LIST */
+/* ============================= */
+
+const tracks = [
+"Silverstone – Grand Prix Circuit",
+"Spa-Francorchamps – Grand Prix Circuit",
+"Bathurst – Mount Panorama",
+"Le Mans – 24H Circuit",
+"Road America – Grand Prix Circuit",
+"Fuji Speedway – Grand Prix Circuit",
+"Nürburgring – Nordschleife 24H",
+"Daytona – Road Course"
+];
+
+/* ============================= */
+/* WEIGHTED RANDOM FUNCTION */
+/* ============================= */
+
+function weightedRandom(items, weights) {
+    let pool = [];
+    for (let i = 0; i < items.length; i++) {
+        for (let j = 0; j < weights[i]; j++) {
+            pool.push(items[i]);
+        }
+    }
+    return pool[Math.floor(Math.random() * pool.length)];
+}
+
+/* ============================= */
+/* GENERATOR */
+/* ============================= */
+
+function generate() {
+
+    // Vehicle
+    const vehicle = vehicles[Math.floor(Math.random() * vehicles.length)];
+
+    // Track
+    const track = tracks[Math.floor(Math.random() * tracks.length)];
+
+    // Date (season weighted)
+    const months = [1,2,3,4,5,6,7,8,9,10,11,12];
+    const monthWeights = [1,1,2,2,2,6,6,6,2,2,2,1];
+    const month = weightedRandom(months, monthWeights);
+
+    const year = Math.floor(Math.random() * (2025 - 2020 + 1)) + 2020;
+    const maxDay = new Date(year, month, 0).getDate();
+    const day = Math.floor(Math.random() * maxDay) + 1;
+
+    const dateObj = new Date(year, month - 1, day);
+
+    // Time (afternoon weighted)
+    const hours = [];
+    for (let h = 0; h < 24; h++) {
+        let weight = 1;
+        if (h >= 11 && h <= 13) weight = 3;
+        if (h >= 14 && h <= 18) weight = 5;
+        if (h >= 19 && h <= 21) weight = 2;
+
+        for (let i = 0; i < weight; i++) {
+            hours.push(h);
+        }
+    }
+
+    const hour = hours[Math.floor(Math.random() * hours.length)];
+    const time = new Date();
+    time.setHours(hour);
+    time.setMinutes(0);
+
+    // Weather
+    const weatherGroups = ["Clear","Rain","Fog"];
+    const groupWeights = [10,4,2];
+    const group = weightedRandom(weatherGroups, groupWeights);
+
+    let weatherOptions = [];
+
+    if (group === "Clear") {
+        weatherOptions = ["Clear","Light Cloud","Medium Cloud","Overcast"];
+    }
+    if (group === "Rain") {
+        weatherOptions = ["Light Rain","Rain","Storm","Thunderstorm","Snow"];
+    }
+    if (group === "Fog") {
+        weatherOptions = ["Fog","Heavy Fog","Hazy","Fog with Rain"];
+    }
+
+    const weather = weatherOptions[Math.floor(Math.random() * weatherOptions.length)];
+
+    // Output
+    document.getElementById("vehicle").innerHTML = "🏎 Vehicle: <b>" + vehicle + "</b>";
+    document.getElementById("track").innerHTML = "🛣 Track: <b>" + track + "</b>";
+    document.getElementById("weather").innerHTML = "🌦 Weather: <b>" + weather + "</b>";
+    document.getElementById("date").innerHTML = "📅 Date: <b>" + dateObj.toISOString().split('T')[0] + "</b>";
+    document.getElementById("time").innerHTML =
+        "⏰ Time: <b>" +
+        time.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) +
+        "</b>";
+}
+
+// Auto-run once
