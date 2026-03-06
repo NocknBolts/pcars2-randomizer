@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Project CARS 2 Randomizer</title>
+
+<style>
+
+body {
+    font-family: Arial;
+    text-align: center;
+    background-color: #111;
+    color: white;
+}
+
+button {
+    font-size: 20px;
+    padding: 12px 24px;
+    margin-top: 20px;
+}
+
+#result {
+    margin-top: 30px;
+    font-size: 24px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Project CARS 2 Randomizer</h1>
+
+<button onclick="randomize()">Generate Session</button>
+
+<div id="result"></div>
+
+<script>
+
+const allCars = [
+
+"Acura NSX",
+"Acura NSX GT3",
+"Aston Martin DB11",
+"Aston Martin V12 Vantage GT3",
+"Aston Martin V8 Vantage GTE",
+"Audi R8 LMS",
+"Audi R8 LMS Endurance",
+"Audi R18 e-tron quattro",
+"Audi 90 quattro IMSA GTO",
+"BAC Mono",
+"Bentley Continental GT3",
+"Bentley Speed 8",
+"BMW M1 Procar",
+"BMW M3 GT4",
+"BMW M6 GT3",
+"BMW M6 GTLM",
+"BMW V12 LMR",
+"Cadillac ATS-V.R GT3",
+"Caterham SP/300.R",
+"Chevrolet Corvette C7.R",
+"Dallara DW12 IndyCar",
+"Ferrari 488 GTE",
+"Ferrari 488 GT3",
+"Ferrari F40",
+"Ferrari F40 LM",
+"Ferrari F50 GT",
+"Ford GT LM GTE",
+"Ford GT40 MkIV",
+"Ford Mustang RTR Spec 5D",
+"Ginetta G55 GT4",
+"Ginetta G57 P2",
+"Honda Civic Type R",
+"Honda NSX GT3",
+"Jaguar XJR-9",
+"KTM X-Bow GT4",
+"KTM X-Bow R",
+"Lamborghini Huracan GT3",
+"Lamborghini Huracan Super Trofeo",
+"Ligier JS P2",
+"Ligier JS P3",
+"Lotus 49",
+"Lotus 72D",
+"Lotus 78",
+"Lotus 98T",
+"Marek RP219D LMP2",
+"Marek RP339H LMP1",
+"McLaren 570S GT4",
+"McLaren 650S GT3",
+"McLaren F1 GTR",
+"McLaren P1",
+"McLaren P1 GTR",
+"Mercedes AMG GT3",
+"Mercedes Sauber C9",
+"Nissan GT-R Nismo GT3",
+"Nissan GT-R LM Nismo",
+"Pagani Huayra BC",
+"Panoz Esperante GTR-1",
+"Porsche 911 GT3 R",
+"Porsche 911 RSR",
+"Porsche 917K",
+"Porsche 919 Hybrid",
+"Porsche 935/78",
+"Radical RXC Turbo",
+"Radical SR3 RS",
+"Radical SR8 RX",
+"Renault Megane Trophy",
+"RUF CTR3",
+"Toyota TS050 Hybrid"
+
+];
+
+const allTracks = [
+
+"Autodromo Nazionale Monza",
+"Imola",
+"Azure Circuit",
+"Azure Coast",
+"Bathurst Mount Panorama",
+"Brands Hatch GP",
+"Brands Hatch Indy",
+"Barcelona GP",
+"Spa Francorchamps",
+"Circuit Zolder",
+"Daytona Road Course",
+"Donington Park GP",
+"Donington Park National",
+"Dubai Autodrome",
+"Fuji Speedway",
+"Hockenheim GP",
+"Indianapolis Road",
+"Indianapolis Oval",
+"Knockhill",
+"Laguna Seca",
+"Le Mans",
+"Long Beach",
+"Mojave Desert",
+"Nürburgring GP",
+"Nürburgring Nordschleife",
+"Nürburgring Combined",
+"Oulton Park",
+"Red Bull Ring",
+"Road America",
+"Rouen Les Essarts",
+"Sakitto",
+"Silverstone GP",
+"Silverstone International",
+"Silverstone National",
+"Snetterton",
+"Sonoma Raceway",
+"Texas Motor Speedway",
+"Watkins Glen",
+"Willow Springs",
+"Zhuhai"
+
+];
+
+let remainingCars = [...allCars];
+let remainingTracks = [...allTracks];
+
+function pickRandom(list) {
+
+    const index = Math.floor(Math.random() * list.length);
+    return list.splice(index,1)[0];
+
+}
+
+function resetIfEmpty() {
+
+    if (remainingCars.length === 0) {
+        remainingCars = [...allCars];
+        alert("All cars used. Resetting car list.");
+    }
+
+    if (remainingTracks.length === 0) {
+        remainingTracks = [...allTracks];
+        alert("All tracks used. Resetting track list.");
+    }
+
+}
+
+function randomize() {
+
+    resetIfEmpty();
+
+    const car = pickRandom(remainingCars);
+    const track = pickRandom(remainingTracks);
+
+    document.getElementById("result").innerHTML =
+    "<b>Car:</b> " + car +
+    "<br><br>" +
+    "<b>Track:</b> " + track +
+    "<br><br>" +
+    "Cars remaining this cycle: " + remainingCars.length +
+    "<br>" +
+    "Tracks remaining this cycle: " + remainingTracks.length;
+
+}
+
+</script>
+
+</body>
+
+</html>
