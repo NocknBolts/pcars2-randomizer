@@ -1,204 +1,351 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<title>Project CARS 2 Randomizer</title>
+
+<title>PC2 Session Generator</title>
 
 <style>
 
-body {
-    font-family: Arial;
-    text-align: center;
-    background-color: #111;
-    color: white;
+body{
+background:#111;
+color:white;
+font-family:Arial;
+text-align:center;
+padding:40px;
 }
 
-button {
-    font-size: 20px;
-    padding: 12px 24px;
-    margin-top: 20px;
+button{
+font-size:22px;
+padding:15px 35px;
+margin-top:25px;
+cursor:pointer;
 }
 
-#result {
-    margin-top: 30px;
-    font-size: 24px;
+#result{
+margin-top:40px;
+font-size:22px;
+line-height:1.8;
 }
 
 </style>
+
 </head>
 
 <body>
 
-<h1>Project CARS 2 Randomizer</h1>
+<h1>Project CARS 2 Random Session</h1>
 
-<button onclick="randomize()">Generate Session</button>
+<button onclick="generate()">Generate Session</button>
 
 <div id="result"></div>
 
 <script>
 
-const allCars = [
+const allCars=[
 
 "Acura NSX",
 "Acura NSX GT3",
+"Watson Roadster",
+
 "Aston Martin DB11",
-"Aston Martin V12 Vantage GT3",
+"Aston Martin DBR1-300",
 "Aston Martin V8 Vantage GTE",
+"Aston Martin V8 Vantage GT4",
+"Aston Martin V12 Vantage GT3",
+"Aston Martin Vantage GT12",
+"Aston Martin Vulcan",
+
+"Audi 90 quattro IMSA-GTO",
+"Audi A1 quattro",
+"Audi R8 (LMP900)",
+"Audi R8 e-tron quattro (LMP1)",
 "Audi R8 LMS",
 "Audi R8 LMS Endurance",
+"Audi R8 V10 plus",
 "Audi R18 e-tron quattro",
-"Audi 90 quattro IMSA GTO",
+"Audi V8 quattro DTM",
+"Audi R18 (Le Mans)",
+"Audi R18 (Fuji)",
+"Audi Sport quattro S1",
+"Audi S1 EKS RX quattro",
+
 "BAC Mono",
+
 "Bentley Continental GT3",
+"Bentley Continental GT3 Endurance",
 "Bentley Speed 8",
+
+"BMW 1-Series M Coupe",
+"BMW 1-Series M Coupe StanceWorks Edition",
+"BMW 2002 Turbo",
+"BMW 2002 StanceWorks Edition",
+"BMW 320 TC",
+"BMW 320 Turbo Group 5",
 "BMW M1 Procar",
+"BMW M3 E30 Group A",
 "BMW M3 GT4",
 "BMW M6 GT3",
 "BMW M6 GTLM",
 "BMW V12 LMR",
+"BMW Z4 GT3",
+
 "Cadillac ATS-V.R GT3",
+
 "Caterham SP/300.R",
+
+"Chevrolet Camaro Z/28 Trans Am",
+"Chevrolet Corvette C7 Z06",
 "Chevrolet Corvette C7.R",
-"Dallara DW12 IndyCar",
+
+"Citroen DS3 RX Supercar",
+
+"Dallara DW12 Chevrolet Road Course",
+"Dallara DW12 Chevrolet Speedway",
+"Dallara DW12 Honda Road Course",
+"Dallara DW12 Honda Speedway",
+
+"Ferrari 250 GT Berlinetta",
+"Ferrari 250 Testa Rossa",
+"Ferrari 512 S",
+"Ferrari 512 M",
+"Ferrari 512 BB LM",
+"Ferrari 288 GTO",
+"Ferrari F40",
+"Ferrari F355 Challenge",
+"Ferrari 458 Speciale Aperta",
+"Ferrari FXX-K",
+"Ferrari F12tdf",
+"Ferrari 365 GTB4 Competizione",
 "Ferrari 488 GTE",
 "Ferrari 488 GT3",
-"Ferrari F40",
 "Ferrari F40 LM",
 "Ferrari F50 GT",
+"Ferrari LaFerrari",
+
+"Ford Capri Zakspeed Group 5",
+"Ford Escort Mk1 RS1600",
+"Ford Escort Mk1 RS1600 SMS-R",
+"Ford Escort Mk1 RS1600 RX",
+"Ford F150 RTR Ultimate Funhaver",
+"Ford Falcon FG V8 Supercar",
+"Ford Focus RS RX",
+"Ford Fusion Stockcar",
+"Ford GT",
 "Ford GT LM GTE",
 "Ford GT40 MkIV",
-"Ford Mustang RTR Spec 5D",
+"Ford Mustang 2+2 Fastback",
+"Ford Mustang Boss 302R",
+"Ford Mustang Cobra TransAm",
+"Ford Mustang GT",
+"Ford Mustang RTR GT4",
+"Ford Sierra RS500 Cosworth Group A",
+"Ford RS200 Evolution",
+"Ford Mustang RTR Spec-5D",
+"Ford Mustang 66 RTR",
+
+"Ginetta G40 GT5",
+"Ginetta G40 Junior",
+"Ginetta G55 GT3",
 "Ginetta G55 GT4",
-"Ginetta G57 P2",
+"Ginetta G57-P2",
+"Ginetta LMP3",
+
+"Honda 2&4 Concept Car",
+"Honda Civic GRC",
 "Honda Civic Type R",
-"Honda NSX GT3",
+
+"Jaguar E-Type V12",
+"Jaguar F-Type SVR",
+"Jaguar XJ220 S TWR",
 "Jaguar XJR-9",
+"Jaguar XJR-9 LM",
+
 "KTM X-Bow GT4",
 "KTM X-Bow R",
+
+"Lamborghini Huracan LP620-2 Super Trofeo",
 "Lamborghini Huracan GT3",
-"Lamborghini Huracan Super Trofeo",
-"Ligier JS P2",
-"Ligier JS P3",
-"Lotus 49",
-"Lotus 72D",
-"Lotus 78",
-"Lotus 98T",
-"Marek RP219D LMP2",
-"Marek RP339H LMP1",
-"McLaren 570S GT4",
+"Lamborghini Veneno",
+
+"Ligier JS P2 Honda",
+"Ligier JS P2 Judd",
+"Ligier JS P2 Nissan",
+
+"Lotus Type 25",
+"Lotus Type 38",
+"Lotus Type 40",
+"Lotus Type 49",
+"Lotus Type 49C",
+"Lotus Type 51",
+"Lotus Type 56",
+"Lotus Type 72D",
+"Lotus Type 78",
+"Lotus Type 98T",
+
+"Mazda MX5 Radbul",
+
+"McLaren 570S",
 "McLaren 650S GT3",
-"McLaren F1 GTR",
+"McLaren 720S",
+"McLaren F1",
+"McLaren F1 GTR Long Tail",
 "McLaren P1",
 "McLaren P1 GTR",
+
+"Mercedes AMG A45 RX",
+"Mercedes AMG A45 Touring",
+"Mercedes AMG C63 Coupe",
 "Mercedes AMG GT3",
-"Mercedes Sauber C9",
-"Nissan GT-R Nismo GT3",
-"Nissan GT-R LM Nismo",
+"Mercedes AMG GTR",
+"Mercedes 190E DTM",
+"Mercedes 300 SEL 6.8",
+"Mercedes 300 SL",
+"Mercedes CLK-LM",
+"Mercedes SLS AMG GT3",
+"Sauber C9",
+
+"Mini Countryman RX",
+
+"Mitsubishi Evo VI TME",
+"Mitsubishi Evo VI SVA",
+"Mitsubishi Evo IX FQ360",
+"Mitsubishi Evo X FQ400",
+
+"Nissan 280ZX IMSA",
+"Nissan 300ZX LM",
+"Nissan 300ZX GTS",
+"Nissan Fairlady 240ZG",
+"Nissan GT-R GT3",
+"Nissan GT-R Nismo",
+"Nissan GTP ZX Turbo",
+"Nissan R390 GT1",
+"Nissan Skyline R32",
+"Nissan Skyline R34 SMS-R",
+
+"Oreca 03 Nissan",
+
 "Pagani Huayra BC",
+"Pagani Zonda Cinque",
+"Pagani Zonda Revolucion",
+
 "Panoz Esperante GTR-1",
-"Porsche 911 GT3 R",
-"Porsche 911 RSR",
+
+"Porsche 917 LH",
+"Porsche 908/03",
 "Porsche 917K",
-"Porsche 919 Hybrid",
+"Porsche 917/10",
+"Porsche 911 Carrera RSR",
 "Porsche 935/78",
+"Porsche 935/78-81",
+"Porsche 924 Carrera GTP",
+"Porsche 961",
+"Porsche 959 S",
+"Porsche 911 GT1-98",
+"Porsche Carrera GT",
+"Porsche 918 Spyder",
+"Porsche 911 GT3 R",
+"Porsche 911 GT3 R Endurance",
+"Porsche 911 GT3 RS",
+"Porsche 919 Hybrid",
+"Porsche 911 RSR",
+
+"Radical SR3-RS",
+"Radical SR8-RX",
 "Radical RXC Turbo",
-"Radical SR3 RS",
-"Radical SR8 RX",
+
+"Renault Alpine A442B",
 "Renault Megane Trophy",
-"RUF CTR3",
-"Toyota TS050 Hybrid"
+"Renault Clio Cup",
+"Renault Megane RS 275",
+"Renault Megane RX",
+"Renault Megane Touring",
+"Renault RS01",
+"Renault RS01 GT3",
+"Renault R5 Maxi Turbo",
+
+"Toyota 86",
+"Toyota GT86",
+"Toyota Rocket Bunny GT4",
+"Toyota Rocket Bunny Street",
+"Toyota TS020 GT-One",
+"Toyota TS040 Hybrid",
+"Toyota TS050 Hybrid",
+
+"Volkswagen Polo RX"
 
 ];
 
-const allTracks = [
-
-"Autodromo Nazionale Monza",
-"Imola",
-"Azure Circuit",
-"Azure Coast",
-"Bathurst Mount Panorama",
-"Brands Hatch GP",
-"Brands Hatch Indy",
-"Barcelona GP",
-"Spa Francorchamps",
-"Circuit Zolder",
-"Daytona Road Course",
-"Donington Park GP",
-"Donington Park National",
-"Dubai Autodrome",
-"Fuji Speedway",
-"Hockenheim GP",
-"Indianapolis Road",
-"Indianapolis Oval",
-"Knockhill",
-"Laguna Seca",
+const tracks=[
+"Spa",
 "Le Mans",
-"Long Beach",
-"Mojave Desert",
-"Nürburgring GP",
-"Nürburgring Nordschleife",
-"Nürburgring Combined",
-"Oulton Park",
-"Red Bull Ring",
+"Monza",
+"Bathurst",
+"Silverstone",
 "Road America",
-"Rouen Les Essarts",
-"Sakitto",
-"Silverstone GP",
-"Silverstone International",
-"Silverstone National",
+"Fuji",
+"Imola",
+"Daytona Road Course",
+"Nurburgring GP",
+"Nurburgring Nordschleife",
+"Red Bull Ring",
+"Brands Hatch",
+"Donington",
+"Laguna Seca",
 "Snetterton",
-"Sonoma Raceway",
-"Texas Motor Speedway",
+"Sonoma",
 "Watkins Glen",
-"Willow Springs",
-"Zhuhai"
-
+"Long Beach"
 ];
 
-let remainingCars = [...allCars];
-let remainingTracks = [...allTracks];
+let remaining=[...allCars];
 
-function pickRandom(list) {
-
-    const index = Math.floor(Math.random() * list.length);
-    return list.splice(index,1)[0];
-
+function rand(a){
+return a[Math.floor(Math.random()*a.length)];
 }
 
-function resetIfEmpty() {
+function generate(){
 
-    if (remainingCars.length === 0) {
-        remainingCars = [...allCars];
-        alert("All cars used. Resetting car list.");
-    }
-
-    if (remainingTracks.length === 0) {
-        remainingTracks = [...allTracks];
-        alert("All tracks used. Resetting track list.");
-    }
-
+if(remaining.length===0){
+remaining=[...allCars];
+alert("All cars used. List reset.");
 }
 
-function randomize() {
+let i=Math.floor(Math.random()*remaining.length);
+let car=remaining[i];
+remaining.splice(i,1);
 
-    resetIfEmpty();
+let track=rand(tracks);
 
-    const car = pickRandom(remainingCars);
-    const track = pickRandom(remainingTracks);
+let weather=rand([
+"Clear",
+"Light Cloud",
+"Overcast",
+"Light Rain",
+"Rain",
+"Storm",
+"Fog"
+]);
 
-    document.getElementById("result").innerHTML =
-    "<b>Car:</b> " + car +
-    "<br><br>" +
-    "<b>Track:</b> " + track +
-    "<br><br>" +
-    "Cars remaining this cycle: " + remainingCars.length +
-    "<br>" +
-    "Tracks remaining this cycle: " + remainingTracks.length;
+let hour=Math.floor(Math.random()*24);
+
+let date=new Date(
+2020+Math.floor(Math.random()*6),
+Math.floor(Math.random()*12),
+Math.floor(Math.random()*28)+1
+);
+
+document.getElementById("result").innerHTML=
+
+"<b>Vehicle:</b> "+car+"<br><br>"+
+"<b>Track:</b> "+track+"<br><br>"+
+"<b>Weather:</b> "+weather+"<br><br>"+
+"<b>Date:</b> "+date.toISOString().split('T')[0]+"<br><br>"+
+"<b>Time:</b> "+hour.toString().padStart(2,'0')+":00<br><br>"+
+"<b>Cars remaining this cycle:</b> "+remaining.length;
 
 }
 
 </script>
 
 </body>
-
 </html>
